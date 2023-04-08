@@ -28,3 +28,35 @@ C:\Projects\Game\Game\Game\obj\Debug\net6.0\refint\Game.dll
 C:\Projects\Game\Game\Game\obj\Debug\net6.0\Game.pdb
 C:\Projects\Game\Game\Game\obj\Debug\net6.0\Game.genruntimeconfig.cache
 C:\Projects\Game\Game\Game\obj\Debug\net6.0\ref\Game.dll
+E:\My files\c#\Game\Game\bin\Debug\net6.0\Content\Images\fireball.xnb
+E:\My files\c#\Game\Game\bin\Debug\net6.0\Content\Images\player.xnb
+E:\My files\c#\Game\Game\bin\Debug\net6.0\Game.exe
+E:\My files\c#\Game\Game\bin\Debug\net6.0\Game.deps.json
+E:\My files\c#\Game\Game\bin\Debug\net6.0\Game.runtimeconfig.json
+E:\My files\c#\Game\Game\bin\Debug\net6.0\Game.dll
+E:\My files\c#\Game\Game\bin\Debug\net6.0\Game.pdb
+E:\My files\c#\Game\Game\bin\Debug\net6.0\Autofac.dll
+E:\My files\c#\Game\Game\bin\Debug\net6.0\MonoGame.Extended.dll
+E:\My files\c#\Game\Game\bin\Debug\net6.0\MonoGame.Extended.Graphics.dll
+E:\My files\c#\Game\Game\bin\Debug\net6.0\MonoGame.Extended.Tiled.dll
+E:\My files\c#\Game\Game\bin\Debug\net6.0\MonoGame.Framework.dll
+E:\My files\c#\Game\Game\bin\Debug\net6.0\Newtonsoft.Json.dll
+E:\My files\c#\Game\Game\bin\Debug\net6.0\runtimes\linux-x64\native\libSDL2-2.0.so.0
+E:\My files\c#\Game\Game\bin\Debug\net6.0\runtimes\linux-x64\native\libopenal.so.1
+E:\My files\c#\Game\Game\bin\Debug\net6.0\runtimes\osx\native\libSDL2.dylib
+E:\My files\c#\Game\Game\bin\Debug\net6.0\runtimes\osx\native\libopenal.1.dylib
+E:\My files\c#\Game\Game\bin\Debug\net6.0\runtimes\win-x64\native\SDL2.dll
+E:\My files\c#\Game\Game\bin\Debug\net6.0\runtimes\win-x64\native\soft_oal.dll
+E:\My files\c#\Game\Game\bin\Debug\net6.0\runtimes\win-x86\native\SDL2.dll
+E:\My files\c#\Game\Game\bin\Debug\net6.0\runtimes\win-x86\native\soft_oal.dll
+E:\My files\c#\Game\Game\obj\Debug\net6.0\Game.csproj.AssemblyReference.cache
+E:\My files\c#\Game\Game\obj\Debug\net6.0\Game.GeneratedMSBuildEditorConfig.editorconfig
+E:\My files\c#\Game\Game\obj\Debug\net6.0\Game.AssemblyInfoInputs.cache
+E:\My files\c#\Game\Game\obj\Debug\net6.0\Game.AssemblyInfo.cs
+E:\My files\c#\Game\Game\obj\Debug\net6.0\Game.csproj.CoreCompileInputs.cache
+E:\My files\c#\Game\Game\obj\Debug\net6.0\Game.csproj.CopyComplete
+E:\My files\c#\Game\Game\obj\Debug\net6.0\Game.dll
+E:\My files\c#\Game\Game\obj\Debug\net6.0\refint\Game.dll
+E:\My files\c#\Game\Game\obj\Debug\net6.0\Game.pdb
+E:\My files\c#\Game\Game\obj\Debug\net6.0\Game.genruntimeconfig.cache
+E:\My files\c#\Game\Game\obj\Debug\net6.0\ref\Game.dll

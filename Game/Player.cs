@@ -10,11 +10,13 @@ public class Player
     private Vector2 position;
     private int velocity;
     private float fallTime;
-    private bool isOnGround = true;
-    private float jumpScale = 10;
+    private bool isOnGround;
+    private bool isJumping;
+    private float jumpScale = 100;
     private double manaScore = 100;
     private double hpScore = 100;
     private Direction direction;
+    private float jumpTime;
 
     public Player(Texture2D texture, Vector2 position, int velocity)
     {
@@ -25,6 +27,7 @@ public class Player
 
     public void Update(Keys key, GameTime gameTime)
     {
+        isOnGround = position.Y >= 350;
         switch (key)
         {
             case Keys.A:
@@ -36,35 +39,32 @@ public class Player
                 direction = Direction.Right;
                 break;
             case Keys.Space:
-                if (isOnGround)
-                {
-                    position.Y += jumpScale;
-                    isOnGround = false;
-                }
-                break;
+                isJumping = isOnGround || isJumping;
+                break; 
             case Keys.E:
-                MakeShot();
+                //make fireaball
                 break;
         }
-        position.Y += 9.8f * gameTime.ElapsedGameTime.Milliseconds * velocity * fallTime * 0.0003f;
-        fallTime += gameTime.ElapsedGameTime.Milliseconds;
 
-        isOnGround = position.Y >= 1000;
+        if (isJumping)
+        {
+            position.Y -= gameTime.ElapsedGameTime.Milliseconds * 0.0040f;
+            jumpTime += gameTime.ElapsedGameTime.Milliseconds;
+            isJumping = jumpTime <= 300;
+        }
+        else
+            jumpTime = 0;
         
-        if (isOnGround)
+        if (isOnGround && !isJumping)
             fallTime = 0;
         else
+        {
+            position.Y += gameTime.ElapsedGameTime.Milliseconds * fallTime * 0.0007f;
             fallTime += gameTime.ElapsedGameTime.Milliseconds;
+        }
     }
     
     public void Draw(SpriteBatch spriteBatch) => spriteBatch.Draw(texture, position, Color.White);
+    
 
-    public void MakeShot()
-    {
-        const int shotCost = 40;
-        if (manaScore - shotCost < 0) 
-            return;
-        var shot = new Shot(position, direction);
-
-    }
 }
