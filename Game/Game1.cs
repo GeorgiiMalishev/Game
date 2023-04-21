@@ -19,7 +19,8 @@ public class Game1 : Microsoft.Xna.Framework.Game
 
     protected override void Initialize()
     {
-        player = new Player(Content.Load<Texture2D>("Images/player"), new Vector2(300, 300), 10);
+        player = new Player();
+        player.Initialize(Content);
         Fireball.Texture = Content.Load<Texture2D>("Images/fireball");
         base.Initialize();
     }
