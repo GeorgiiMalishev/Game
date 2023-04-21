@@ -10,11 +10,12 @@ public class Fireball
     public static Texture2D Texture;
     public const int Damage = 10;
     private Vector2 position;
-    private static int velocity = 5;
-    private Direction direction;
+    private static float velocity = 0.03f;
+    private int direction;
+    private float flyTime;
     
     
-    public Fireball(Vector2 position, Direction direction)
+    public Fireball(Vector2 position, int direction)
     {
         this.position = position;
         this.direction = direction;
@@ -23,11 +24,18 @@ public class Fireball
     
     public void Update(GameTime gameTime)
     {
-        position.X += (int)direction * velocity;
+        flyTime += gameTime.ElapsedGameTime.Milliseconds;
+        position.X += direction * velocity * flyTime;
     }
 
-    public static void Draw(SpriteBatch spriteBatch)
+    public void Draw(SpriteBatch spriteBatch)
     {
-        //spriteBatch.Draw(Texture, position, Color.LightGreen);
+        spriteBatch.Draw(Texture, position, Color.White);
+    }
+
+    public bool IsExist()
+    {
+        return position.X is <= 750 and >= 0
+               && direction != 0;
     }
 }

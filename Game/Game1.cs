@@ -34,9 +34,8 @@ public class Game1 : Microsoft.Xna.Framework.Game
     {
         var keyPressed = Keys.None;
         var pressedKeys = Keyboard.GetState().GetPressedKeys();
-        if (pressedKeys.Length != 0)
-             keyPressed = pressedKeys[0];
-        player.Update(keyPressed, gameTime);
+        
+        player.Update(pressedKeys, gameTime);
         base.Update(gameTime);
     }
 
