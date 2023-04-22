@@ -1,8 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Net.Mime;
-using System.Net.Security;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
@@ -13,25 +10,28 @@ namespace Game;
 public class Player
 {
     private Texture2D texture;
-    private Vector2 position = new Vector2(300, 300);
-    private Vector2 velocity = new Vector2(10, 0);
+    private Vector2 position = new (300, 300);
+    private Vector2 velocity = new (10, 0);
+    
     private float fallTime;
     private bool isOnGround;
+    
     private bool isJumping;
-    private float jumpScale = 100;
-    private int manaScore = 100;
-    private const int MaxMana = 100;
-    private int hpScore = 100;
-    private int direction;
+    private bool wasJumping;
     private float jumpTime;
     private const float MaxJumpTime = 0.35f;
     private const float JumpLaunchVelocity = -35.0f;
     private const float JumpControlPower = 0.14f;
-    private bool wasJumping;
-    private float maxYVelocity = 500f;
+
+    private int manaScore = 100;
+    private const int MaxMana = 100;
+    
+    //private int hpScore = 100;
+    
+    private int direction;
     private int lastDirection;
 
-    private static readonly Vector2 border = new Vector2(720, 400);
+    private static readonly Vector2 Border = new Vector2(720, 400);
 
 
     public void Initialize(ContentManager content)
@@ -60,6 +60,7 @@ public class Player
             lastDirection = direction;
         direction = 0;
         
+        Console.WriteLine(manaScore);
         manaScore = ++manaScore >= MaxMana 
             ? manaScore 
             : ++manaScore;
@@ -68,12 +69,12 @@ public class Player
     private void DoMove()
     {
         var newXPosition = velocity.X * direction + position.X;
-        position.X = newXPosition > border.X || newXPosition < 0
+        position.X = newXPosition > Border.X || newXPosition < 0
             ? position.X
             : newXPosition;
 
         var newYPosition = position.Y + velocity.Y;
-        position.Y = newYPosition > border.Y || newYPosition < 0
+        position.Y = newYPosition > Border.Y || newYPosition < 0
             ? position.Y
             : newYPosition;
     }
@@ -110,6 +111,7 @@ public class Player
 
             if (jumpTime is > 0.0f and <= MaxJumpTime)
                 velocity.Y = JumpLaunchVelocity * (1.0f - (float)Math.Pow(jumpTime / MaxJumpTime, JumpControlPower));
+            
             else
             {
                 jumpTime = 0.0f;
@@ -118,7 +120,6 @@ public class Player
             }
         
             wasJumping = isJumping;
-            
         }
         
         else
@@ -126,7 +127,5 @@ public class Player
             jumpTime = 0;
             velocity.Y = 0;
         }
-        
     }
-
 }

@@ -1,9 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
-using System.Net.Mime;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
-using Microsoft.Xna.Framework.Input;
 
 namespace Game;
 
@@ -11,14 +9,14 @@ public class Fireball
 {
     public static Texture2D Texture;
     public const int Damage = 10;
-    private const int ManaCost = 40;
-    private static int cooldown;
+    private const int ManaCost = 70;
+    private static int _cooldown;
     
     private Vector2 position;
-    private static float velocity = 0.03f;
-    private int direction;
+    private const float Velocity = 0.03f;
+    private readonly int direction;
     private float flyTime;
-    private static List<Fireball> fireballs = new ();
+    private static List<Fireball> _fireballs = new ();
 
     private Fireball(Vector2 position, int direction)
     {
@@ -28,22 +26,22 @@ public class Fireball
     
     public static void Update(GameTime gameTime)
     {
-        fireballs.ForEach(fireball => fireball.Move(gameTime));
-        fireballs = fireballs.Where(fireball => fireball.IsExist()).ToList();
-        cooldown = cooldown > 0 
-            ? cooldown - gameTime.ElapsedGameTime.Milliseconds 
+        _fireballs.ForEach(fireball => fireball.Move(gameTime));
+        _fireballs = _fireballs.Where(fireball => fireball.IsExist()).ToList();
+        _cooldown = _cooldown > 0 
+            ? _cooldown - gameTime.ElapsedGameTime.Milliseconds 
             : 0;
     }
     
     public static void Draw(SpriteBatch spriteBatch)
     {
-        fireballs.ForEach(fireball => spriteBatch.Draw(Texture, fireball.position, Color.White));
+        _fireballs.ForEach(fireball => spriteBatch.Draw(Texture, fireball.position, Color.White));
     }
 
     private void Move(GameTime gameTime)
     {
         flyTime += gameTime.ElapsedGameTime.Milliseconds;
-        position.X += direction * velocity * flyTime;
+        position.X += direction * Velocity * flyTime;
     }
 
     private bool IsExist()
@@ -54,10 +52,10 @@ public class Fireball
 
     public static void Create(Vector2 playerPosition, int direction, ref int manaScore)
     {
-        if (cooldown != 0 || manaScore - ManaCost < 0) 
+        if (_cooldown != 0 || manaScore - ManaCost < 0) 
             return;
-        fireballs.Add(new Fireball(playerPosition, direction));
-        cooldown = 200;
+        _fireballs.Add(new Fireball(playerPosition, direction));
+        _cooldown = 200;
         manaScore -= ManaCost;
     }
 }
