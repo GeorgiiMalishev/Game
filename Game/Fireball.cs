@@ -1,44 +1,48 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
 
 namespace Game;
 
-public class Fireball
+public class Fireball:IElement
 {
-    public static Texture2D Texture;
+    private static Texture2D _texture;
     public const int Damage = 10;
-    private const int ManaCost = 70;
-    private static int _cooldown;
-    private const int Cooldown = 200;
+    public const int ManaCost = 70;
+    public static int CooldownCounter;
+    public const int Cooldown = 200;
     
     private Vector2 position;
     private const float Velocity = 0.03f;
     private readonly int direction;
     private float flyTime;
-    private static List<Fireball> _fireballs = new ();
 
     private Rectangle hitbox => new Rectangle((int)position.X - 15, (int)position.Y - 15, 30, 30);
 
-    private Fireball(Vector2 position, int direction)
+    public Fireball(Vector2 position, int direction)
     {
         this.position = position;
         this.direction = direction;
     }
-    
-    public static void Update(GameTime gameTime)
+
+    public static void LoadContent(ContentManager content)
     {
-        _fireballs.ForEach(fireball => fireball.Move(gameTime));
-        _fireballs = _fireballs.Where(fireball => fireball.IsExist()).ToList();
-        _cooldown = _cooldown > 0 
-            ? _cooldown - gameTime.ElapsedGameTime.Milliseconds 
+        _texture = content.Load<Texture2D>("Images/fireball");
+    }
+    
+    public void Update(GameTime gameTime)
+    {
+        Move(gameTime);
+        CooldownCounter = CooldownCounter > 0 
+            ? CooldownCounter - gameTime.ElapsedGameTime.Milliseconds 
             : 0;
     }
     
-    public static void Draw(SpriteBatch spriteBatch)
+    public void Draw(SpriteBatch spriteBatch)
     {
-        _fireballs.ForEach(fireball => spriteBatch.Draw(Texture, fireball.hitbox, Color.White));
+        spriteBatch.Draw(_texture, hitbox, Color.White);
     }
 
     private void Move(GameTime gameTime)
@@ -49,16 +53,6 @@ public class Fireball
 
     private bool IsExist()
     {
-        return position.X is <= 800 and >= 0
-               && direction != 0;
-    }
-
-    public static void Create(Vector2 playerPosition, int direction, ref double manaScore)
-    {
-        if (_cooldown != 0 || manaScore - ManaCost < double.Epsilon) 
-            return;
-        _fireballs.Add(new Fireball(playerPosition, direction));
-        _cooldown = Cooldown;
-        manaScore -= ManaCost;
+        return position.X is <= 800 and >= 0;
     }
 }

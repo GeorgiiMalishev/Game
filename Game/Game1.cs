@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.IO;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
@@ -9,7 +10,7 @@ public class Game1 : Microsoft.Xna.Framework.Game
 {
     private GraphicsDeviceManager graphics;
     private SpriteBatch spriteBatch;
-    private Player player;
+    private Level _level;
     
     //private List<Plate> = new List<Plate>{new Plate()}
 
@@ -22,23 +23,24 @@ public class Game1 : Microsoft.Xna.Framework.Game
 
     protected override void Initialize()
     {
-        player = new Player();
-        player.Initialize(Content);
-        Fireball.Texture = Content.Load<Texture2D>("Images/fireball");
+        var levelInString = new StreamReader("Levels/testlevel.txt").ReadToEndAsync().Result;
+        _level = new Level(levelInString);
+        _level.Initialize();
         base.Initialize();
     }
 
     protected override void LoadContent()
     {
         spriteBatch = new SpriteBatch(GraphicsDevice);
+        _level.LoadContent(Content);
     }
     
     protected override void Update(GameTime gameTime)
     {
         var keyPressed = Keys.None;
         var pressedKeys = Keyboard.GetState().GetPressedKeys();
-        
-        player.Update(pressedKeys, gameTime);
+        _level.Update(gameTime);
+        _level.Player.Update(pressedKeys, gameTime, _level);
         base.Update(gameTime);
     }
 
@@ -46,7 +48,7 @@ public class Game1 : Microsoft.Xna.Framework.Game
     {
         GraphicsDevice.Clear(Color.CornflowerBlue);
         spriteBatch.Begin();
-        player.Draw(spriteBatch);
+        _level.Draw(spriteBatch);
         spriteBatch.End();
         base.Draw(gameTime);
     }

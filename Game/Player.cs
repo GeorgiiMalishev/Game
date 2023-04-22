@@ -5,15 +5,16 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
+using MonoGame.Extended.Content;
 
 namespace Game;
 
-public class Player
+public class Player : IElement
 {
-    private Texture2D texture;
-    private Vector2 position = new (300, 300);
+    private static Texture2D texture;
+    public Vector2 Position;
     private Vector2 velocity = new (4, 0);
-    private Rectangle Hitbox => new ((int)position.X - 15, (int)position.Y - 15, 30, 30);
+    private Rectangle Hitbox => new ((int)Position.X - 15, (int)Position.Y - 15, 30, 30);
 
     private float fallTime;
     private bool isOnGround;
@@ -25,31 +26,33 @@ public class Player
     private const float JumpLaunchVelocity = -35.0f;
     private const float JumpControlPower = 0.14f;
 
-    private double manaScore = 100;
+    public double ManaScore = 100;
     private const int MaxMana = 100;
     private const double ManaRatio = 0.7;
     
     //private int hpScore = 100;
     
     private int direction;
-    private int lastDirection;
+    public int LastDirection = 1;
 
     private static readonly Vector2 Border = new Vector2(800, 600);
+    
+    private static SpriteFont font;
 
-    private static List<Plate> plates;
+    public Player(Vector2 position)
+    {
+        this.Position = position;
+    }
     
 
-    public void Initialize(ContentManager content)
+    public static void  LoadContent(ContentManager content)
     {
         texture = content.Load<Texture2D>("Images/player");
-        plates = new List<Plate>{new (new Vector2(200, 400), texture)
-            , new (new Vector2(250, 350), texture)
-            , new (new Vector2(400, 350), texture)
-            , new (new Vector2(300, 300), texture)};
+        font = content.Load<SpriteFont>("Fonts/simplefont");
     }
-    public void Update(Keys[] keys, GameTime gameTime)
+    public void Update(Keys[] keys, GameTime gameTime, Level level)
     {
-        isOnGround = position.Y >= 450 || plates.Any(plate => plate.IsStayOnPlate(Hitbox));
+        isOnGround = Position.Y >= 450 || level.Plates.Any(plate => plate.IsStayOnPlate(Hitbox));
         
         if (keys.Contains(Keys.A))
                 direction = -1;
@@ -58,47 +61,43 @@ public class Player
         if (keys.Contains(Keys.Space) || keys.Contains(Keys.W))
             isJumping = isOnGround || isJumping;
         if (keys.Contains(Keys.E))
-            Fireball.Create(position, lastDirection, ref manaScore);
+            level.CreateFireball();
 
         DoJump(gameTime);
-        DoFall(gameTime);
+        DoFall(gameTime, level);
         DoMove();
         
-        Fireball.Update(gameTime);
-        
         if (direction != 0)
-            lastDirection = direction;
+            LastDirection = direction;
         direction = 0;
         
-        manaScore = manaScore + ManaRatio >= MaxMana 
-            ? manaScore 
-            : manaScore + ManaRatio;
+        ManaScore = ManaScore + ManaRatio >= MaxMana 
+            ? ManaScore 
+            : ManaScore + ManaRatio;
     }
 
     private void DoMove()
     {
-        var newXPosition = velocity.X * direction + position.X;
-        position.X = newXPosition > Border.X || newXPosition < 0
-            ? position.X
+        var newXPosition = velocity.X * direction + Position.X;
+        Position.X = newXPosition > Border.X || newXPosition < 0
+            ? Position.X
             : newXPosition;
 
-        var newYPosition = position.Y + velocity.Y;
-        position.Y = newYPosition > Border.Y || newYPosition < 0
-            ? position.Y
+        var newYPosition = Position.Y + velocity.Y;
+        Position.Y = newYPosition > Border.Y || newYPosition < 0
+            ? Position.Y
             : newYPosition;
     }
 
     public void Draw(SpriteBatch spriteBatch)
     {
         spriteBatch.Draw(texture, Hitbox, Color.White);
-        Fireball.Draw(spriteBatch);
-        plates.ForEach(plate => spriteBatch.Draw(texture, plate.Border, Color.Coral));
-       //spriteBatch.DrawString(, manaScore, new Vector2(100, 100), Color.Black); 
+        spriteBatch.DrawString(font,$"mana: {(int)ManaScore}", new Vector2(10, 10), Color.Black); 
     }
 
-    private void DoFall(GameTime gameTime)
+    private void DoFall(GameTime gameTime, Level level)
     {
-        if (isOnGround || isJumping || plates.Any(plate => plate.IsStayOnPlate(Hitbox)))
+        if (isOnGround || isJumping || level.Plates.Any(plate => plate.IsStayOnPlate(Hitbox)))
         {
             fallTime = 0;
             if (!isJumping)
