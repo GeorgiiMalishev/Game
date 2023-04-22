@@ -1,4 +1,5 @@
-﻿using Microsoft.Xna.Framework;
+﻿using System.Collections.Generic;
+using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 
@@ -9,6 +10,8 @@ public class Game1 : Microsoft.Xna.Framework.Game
     private GraphicsDeviceManager graphics;
     private SpriteBatch spriteBatch;
     private Player player;
+    
+    //private List<Plate> = new List<Plate>{new Plate()}
 
     public Game1()
     {

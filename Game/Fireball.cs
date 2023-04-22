@@ -11,12 +11,15 @@ public class Fireball
     public const int Damage = 10;
     private const int ManaCost = 70;
     private static int _cooldown;
+    private const int Cooldown = 200;
     
     private Vector2 position;
     private const float Velocity = 0.03f;
     private readonly int direction;
     private float flyTime;
     private static List<Fireball> _fireballs = new ();
+
+    private Rectangle hitbox => new Rectangle((int)position.X - 15, (int)position.Y - 15, 30, 30);
 
     private Fireball(Vector2 position, int direction)
     {
@@ -35,7 +38,7 @@ public class Fireball
     
     public static void Draw(SpriteBatch spriteBatch)
     {
-        _fireballs.ForEach(fireball => spriteBatch.Draw(Texture, fireball.position, Color.White));
+        _fireballs.ForEach(fireball => spriteBatch.Draw(Texture, fireball.hitbox, Color.White));
     }
 
     private void Move(GameTime gameTime)
@@ -46,16 +49,16 @@ public class Fireball
 
     private bool IsExist()
     {
-        return position.X is <= 750 and >= 0
+        return position.X is <= 800 and >= 0
                && direction != 0;
     }
 
-    public static void Create(Vector2 playerPosition, int direction, ref int manaScore)
+    public static void Create(Vector2 playerPosition, int direction, ref double manaScore)
     {
-        if (_cooldown != 0 || manaScore - ManaCost < 0) 
+        if (_cooldown != 0 || manaScore - ManaCost < double.Epsilon) 
             return;
         _fireballs.Add(new Fireball(playerPosition, direction));
-        _cooldown = 200;
+        _cooldown = Cooldown;
         manaScore -= ManaCost;
     }
 }
