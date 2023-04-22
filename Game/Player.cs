@@ -19,8 +19,9 @@ public class Player
     private bool isOnGround;
     private bool isJumping;
     private float jumpScale = 100;
-    private double manaScore = 100;
-    private double hpScore = 100;
+    private int manaScore = 100;
+    private const int MaxMana = 100;
+    private int hpScore = 100;
     private int direction;
     private float jumpTime;
     private const float MaxJumpTime = 0.35f;
@@ -28,9 +29,7 @@ public class Player
     private const float JumpControlPower = 0.14f;
     private bool wasJumping;
     private float maxYVelocity = 500f;
-    private List<Fireball> fireballs = new List<Fireball>();
     private int lastDirection;
-    private float fireballCooldown;
 
     private static readonly Vector2 border = new Vector2(720, 400);
 
@@ -48,25 +47,22 @@ public class Player
                 direction = 1;
         if (keys.Contains(Keys.Space) || keys.Contains(Keys.W))
             isJumping = isOnGround || isJumping;
-        if (keys.Contains(Keys.E) && fireballCooldown == 0)
-        {
-            fireballs.Add(new Fireball(position, lastDirection));
-            fireballCooldown = 1000;
-        }
+        if (keys.Contains(Keys.E))
+            Fireball.Create(position, lastDirection, ref manaScore);
 
         DoJump(gameTime);
         DoFall(gameTime);
         DoMove();
-
+        
+        Fireball.Update(gameTime);
+        
         if (direction != 0)
             lastDirection = direction;
         direction = 0;
         
-        fireballs.ForEach(fireball => fireball.Update(gameTime));
-        fireballs = fireballs.Where(fireball => fireball.IsExist()).ToList();
-        fireballCooldown = fireballCooldown > 0 
-            ? fireballCooldown - gameTime.ElapsedGameTime.Milliseconds 
-            : 0;
+        manaScore = ++manaScore >= MaxMana 
+            ? manaScore 
+            : ++manaScore;
     }
 
     private void DoMove()
@@ -85,8 +81,8 @@ public class Player
     public void Draw(SpriteBatch spriteBatch)
     {
         spriteBatch.Draw(texture, position, Color.White);
-        
-        fireballs.ForEach(fireball => fireball.Draw(spriteBatch));
+        Fireball.Draw(spriteBatch);
+       // spriteBatch.DrawString(, manaScore, new Vector2(100, 100), Color.Black); 
     }
 
     private void DoFall(GameTime gameTime)
