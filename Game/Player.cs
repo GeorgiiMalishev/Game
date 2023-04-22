@@ -5,6 +5,7 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
+using MonoGame.Extended;
 using MonoGame.Extended.Content;
 
 namespace Game;
@@ -35,7 +36,7 @@ public class Player : IElement
     private int direction;
     public int LastDirection = 1;
 
-    private static readonly Vector2 Border = new Vector2(800, 600);
+    private static readonly Vector2 Border = new Vector2(1920, 1080);
     
     private static SpriteFont font;
 
@@ -52,7 +53,7 @@ public class Player : IElement
     }
     public void Update(Keys[] keys, GameTime gameTime, Level level)
     {
-        isOnGround = Position.Y >= 450 || level.Plates.Any(plate => plate.IsStayOnPlate(Hitbox));
+        isOnGround = Hitbox.GetCorners()[3].Y >= Border.Y || level.Plates.Any(plate => plate.IsStayOnPlate(Hitbox));
         
         if (keys.Contains(Keys.A))
                 direction = -1;
@@ -79,12 +80,12 @@ public class Player : IElement
     private void DoMove()
     {
         var newXPosition = velocity.X * direction + Position.X;
-        Position.X = newXPosition > Border.X || newXPosition < 0
+        Position.X = newXPosition >= Border.X - velocity.X || newXPosition <= velocity.X
             ? Position.X
             : newXPosition;
 
         var newYPosition = Position.Y + velocity.Y;
-        Position.Y = newYPosition > Border.Y || newYPosition < 0
+        Position.Y = newYPosition >= Border.Y - 1 || newYPosition <= 1
             ? Position.Y
             : newYPosition;
     }
@@ -92,7 +93,7 @@ public class Player : IElement
     public void Draw(SpriteBatch spriteBatch)
     {
         spriteBatch.Draw(texture, Hitbox, Color.White);
-        spriteBatch.DrawString(font,$"mana: {(int)ManaScore}", new Vector2(10, 10), Color.Black); 
+        spriteBatch.DrawString(font,$"mana: {(int)ManaScore}", Position + new Vector2(-15, -30), Color.Black); 
     }
 
     private void DoFall(GameTime gameTime, Level level)

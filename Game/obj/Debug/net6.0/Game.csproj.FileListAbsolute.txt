@@ -93,3 +93,4 @@ C:\Projects\Game\Game\obj\Debug\net6.0\Game.pdb
 C:\Projects\Game\Game\obj\Debug\net6.0\Game.genruntimeconfig.cache
 C:\Projects\Game\Game\obj\Debug\net6.0\ref\Game.dll
 E:\My files\c#\Game\Game\bin\Debug\net6.0\Content\Fonts\simplefont.xnb
+C:\Projects\Game\Game\bin\Debug\net6.0\Content\Fonts\simplefont.xnb

@@ -36,10 +36,11 @@ public class Level
                     Plates.Add(new Plate(new Vector2(x, y)));
                     break;
                 case '\n' or '\r':
-                    y++;
+                    y+=10;
+                    x = 0;
                     break;
             }
-            x++;
+            x+=10;
         }
     }
 

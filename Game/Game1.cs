@@ -17,6 +17,9 @@ public class Game1 : Microsoft.Xna.Framework.Game
     public Game1()
     {
         graphics = new GraphicsDeviceManager(this);
+        graphics.PreferredBackBufferWidth = 1920;
+        graphics.PreferredBackBufferHeight = 1080;
+        graphics.ToggleFullScreen();
         Content.RootDirectory = "Content";
         IsMouseVisible = true;
     }
@@ -26,6 +29,7 @@ public class Game1 : Microsoft.Xna.Framework.Game
         var levelInString = new StreamReader("Levels/testlevel.txt").ReadToEndAsync().Result;
         _level = new Level(levelInString);
         _level.Initialize();
+        
         base.Initialize();
     }
 
