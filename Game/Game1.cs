@@ -1,8 +1,10 @@
 ﻿using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
+using MonoGame.Extended.Screens;
 
 namespace Game;
 
@@ -11,6 +13,7 @@ public class Game1 : Microsoft.Xna.Framework.Game
     private GraphicsDeviceManager graphics;
     private SpriteBatch spriteBatch;
     private Level _level;
+    private GameStates gameState = GameStates.NotStarted;
     
     //private List<Plate> = new List<Plate>{new Plate()}
 
@@ -41,10 +44,11 @@ public class Game1 : Microsoft.Xna.Framework.Game
     
     protected override void Update(GameTime gameTime)
     {
-        var keyPressed = Keys.None;
         var pressedKeys = Keyboard.GetState().GetPressedKeys();
-        _level.Update(gameTime);
-        _level.Player.Update(pressedKeys, gameTime, _level);
+        if (pressedKeys.Contains(Keys.Escape))
+            
+        if (gameState == GameStates.Running)
+            _level.Update(gameTime, pressedKeys);
         base.Update(gameTime);
     }
 

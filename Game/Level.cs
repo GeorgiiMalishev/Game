@@ -4,6 +4,7 @@ using System.Numerics;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
+using Microsoft.Xna.Framework.Input;
 using Vector2 = Microsoft.Xna.Framework.Vector2;
 
 namespace Game;
@@ -51,8 +52,9 @@ public class Level
        Player.LoadContent(content);
     }
 
-    public void Update(GameTime gameTime)
+    public void Update(GameTime gameTime, Keys[] keys)
     {
+        Player.Update(keys, gameTime, this);
         elements.ForEach(element => element.Update(gameTime));
         elements = elements.Where(element => element.IsExist()).ToList();
     }

@@ -39,7 +39,7 @@ public class Player : IElement
     private static readonly Vector2 Border = new Vector2(1920, 1080);
     
     private static SpriteFont font;
-
+    
     public Player(Vector2 position)
     {
         this.Position = position;
@@ -67,6 +67,7 @@ public class Player : IElement
         DoJump(gameTime);
         DoFall(gameTime, level);
         DoMove();
+        
         
         if (direction != 0)
             LastDirection = direction;

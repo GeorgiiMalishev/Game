@@ -1,1 +1,16 @@
-<?xml version="1.0" encoding="utf-8"?><SourceFileCollection xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema"><Profile>Reach</Profile><Platform>DesktopGL</Platform><Config /><SourceFiles><File>C:/Projects/Game/Game/Content/Fonts/File.spritefont</File><File>C:/Projects/Game/Game/Content/Images/fireball.png</File><File>C:/Projects/Game/Game/Content/Images/player.png</File></SourceFiles><DestFiles><File>Fonts/simplefont.spritefont</File><File xsi:nil="true" /><File xsi:nil="true" /></DestFiles></SourceFileCollection>
+<?xml version="1.0" encoding="utf-8"?>
+<SourceFileCollection xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <Profile>Reach</Profile>
+  <Platform>DesktopGL</Platform>
+  <Config />
+  <SourceFiles>
+    <File>E:/My files/c#/Game/Game/Content/Fonts/File.spritefont</File>
+    <File>E:/My files/c#/Game/Game/Content/Images/fireball.png</File>
+    <File>E:/My files/c#/Game/Game/Content/Images/player.png</File>
+  </SourceFiles>
+  <DestFiles>
+    <File>Fonts/simplefont.spritefont</File>
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+  </DestFiles>
+</SourceFileCollection>
