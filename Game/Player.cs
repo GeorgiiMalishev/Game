@@ -30,6 +30,9 @@ public class Player : IElement
     public double ManaScore = 100;
     private const int MaxMana = 100;
     private const double ManaRatio = 0.7;
+
+    public bool IsAlive = true;
+    public Rectangle Enemy = new Rectangle(100, 1000, 50, 50);
     
     //private int hpScore = 100;
     
@@ -76,6 +79,8 @@ public class Player : IElement
         ManaScore = ManaScore + ManaRatio >= MaxMana 
             ? ManaScore 
             : ManaScore + ManaRatio;
+
+        IsAlive = !level.Enemies.Any(e => e.Hitbox.Intersects(Hitbox));
     }
 
     private void DoMove()
@@ -93,6 +98,7 @@ public class Player : IElement
 
     public void Draw(SpriteBatch spriteBatch)
     {
+        spriteBatch.Draw(texture, Enemy, Color.Gold);
         spriteBatch.Draw(texture, Hitbox, Color.White);
         spriteBatch.DrawString(font,$"mana: {(int)ManaScore}", Position + new Vector2(-15, -30), Color.Black); 
     }
