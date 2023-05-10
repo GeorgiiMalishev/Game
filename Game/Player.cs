@@ -56,7 +56,7 @@ public class Player : IElement
     }
     public void Update(Keys[] keys, GameTime gameTime, Level level)
     {
-        isOnGround = Hitbox.GetCorners()[3].Y >= Border.Y || level.Plates.Any(plate => plate.IsStayOnPlate(Hitbox));
+        isOnGround = Hitbox.GetCorners()[2].Y >= Border.Y - 2 || level.Plates.Any(plate => plate.IsStayOnPlate(Hitbox));
         
         if (keys.Contains(Keys.A))
                 direction = -1;
@@ -91,7 +91,7 @@ public class Player : IElement
             : newXPosition;
 
         var newYPosition = Position.Y + velocity.Y;
-        Position.Y = newYPosition >= Border.Y - 1 || newYPosition <= 1
+        Position.Y = newYPosition >= Border.Y || newYPosition <= 0
             ? Position.Y
             : newYPosition;
     }
