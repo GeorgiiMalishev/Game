@@ -12,6 +12,7 @@ namespace Game;
 
 public class Level
 {
+    public int Id;
     private string levelInString;
     private List<IElement> elements = new ();
     public List<Plate> Plates = new ();
@@ -19,9 +20,10 @@ public class Level
     public List<Fireball> PlayerAttack = new();
     public Player Player;
 
-    public Level(string levelInString)
+    public Level(string levelInString, int id)
     {
         this.levelInString = levelInString;
+        Id = id;
     }
 
     public void Initialize()
@@ -88,5 +90,10 @@ public class Level
         PlayerAttack.Add(new Fireball(Player.Position, Player.LastDirection));
         Fireball.CooldownCounter  = Fireball.Cooldown;
         Player.ManaScore -= Fireball.ManaCost;
+    }
+
+    public bool IsComplete()
+    {
+        return Enemies.Count == 0;
     }
 }

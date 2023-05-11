@@ -79,20 +79,19 @@ public class Game1 : Microsoft.Xna.Framework.Game
     
     protected override void Update(GameTime gameTime)
     {
-        if (mainMenu.Buttons[0].IsPressed() || deathMenu.Buttons[0].IsPressed())
+        if (mainMenu.Buttons[0].IsPressed())
         {
-            var levelInString = new StreamReader("Levels/testlevel.txt").ReadToEndAsync().Result;
-            _level = new Level(levelInString);
-            _level.Initialize();
-            _level.LoadContent(Content);
-
-            gameState = Running;
+            LoadLevel("Levels/level1.txt", 1);
         }
 
         else if(mainMenu.Buttons[2].IsPressed())
         {
             Exit();
         }
+        
+        if (deathMenu.Buttons[0].IsPressed())
+            if (_level.IsComplete())
+                LoadLevel($"Levels/level{_level.Id+1}.txt", _level.Id+1);
         var pressedKeys = Keyboard.GetState().GetPressedKeys();
 
         if (menuCd >= 200 && pressedKeys.Contains(Keys.Escape) && gameState != NotStarted)
@@ -109,29 +108,43 @@ public class Game1 : Microsoft.Xna.Framework.Game
             gameState = NotStarted;
         if (gameState == Running)
             _level.Update(gameTime, pressedKeys);
-        if (gameState != NotStarted && !_level.Player.IsAlive)
+        if (gameState != NotStarted && (!_level.Player.IsAlive || _level.IsComplete()))
             gameState = Over; 
         base.Update(gameTime);
     }
-    
+
 
     protected override void Draw(GameTime gameTime)
     {
         GraphicsDevice.Clear(Color.CornflowerBlue);
         spriteBatch.Begin();
-        
+
         if (gameState == NotStarted)
             mainMenu.Draw(spriteBatch);
         else
             _level.Draw(spriteBatch);
-        
-        if (gameState == Paused)
-            gameMenu.Draw(spriteBatch);
-        
-        else if (gameState == Over)
-            deathMenu.Draw(spriteBatch);
-        
+
+        switch (gameState)
+        {
+            case Paused:
+                gameMenu.Draw(spriteBatch);
+                break;
+            case Over:
+                deathMenu.Draw(spriteBatch);
+                break;
+        }
+
         spriteBatch.End();
         base.Draw(gameTime);
+    }
+
+    private void LoadLevel(string path, int id)
+    {
+        var levelInString = new StreamReader(path).ReadToEndAsync().Result;
+        _level = new Level(levelInString, id);
+        _level.Initialize();
+        _level.LoadContent(Content);
+
+        gameState = Running;
     }
 }

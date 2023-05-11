@@ -83,19 +83,6 @@ public class Player : IElement
         IsAlive = !level.Enemies.Any(e => e.Hitbox.Intersects(Hitbox));
     }
 
-    private void DoMove()
-    {
-        var newXPosition = velocity.X * direction + Position.X;
-        Position.X = newXPosition >= Border.X - velocity.X || newXPosition <= velocity.X
-            ? Position.X
-            : newXPosition;
-
-        var newYPosition = Position.Y + velocity.Y;
-        Position.Y = newYPosition >= Border.Y || newYPosition <= 0
-            ? Position.Y
-            : newYPosition;
-    }
-
     public void Draw(SpriteBatch spriteBatch)
     {
         spriteBatch.Draw(texture, Enemy, Color.Gold);
@@ -144,5 +131,20 @@ public class Player : IElement
             jumpTime = 0;
             velocity.Y = 0;
         }
+    }
+    
+    private void DoMove()
+    {
+        var newXPosition = velocity.X * direction + Position.X;
+        Position.X = newXPosition >= Border.X - velocity.X || newXPosition <= velocity.X
+            ? Position.X
+            : newXPosition;
+
+        var newYPosition = Position.Y + velocity.Y;
+
+        Position.Y = newYPosition >= Border.Y
+                     || newYPosition <= 0
+            ? Position.Y
+            : newYPosition;
     }
 }
