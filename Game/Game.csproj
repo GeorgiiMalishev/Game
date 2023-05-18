@@ -24,6 +24,11 @@
         <PackageReference Include="MonoGame.Content.Builder.Task" Version="3.8.1.303" />
     </ItemGroup>
     <ItemGroup>
+        <None Update="Content\motw.sf">
+            <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+        </None>
+    </ItemGroup>
+    <ItemGroup>
       <Compile Remove="Entity.cs" />
       <Compile Remove="IEntity.cs" />
     </ItemGroup>

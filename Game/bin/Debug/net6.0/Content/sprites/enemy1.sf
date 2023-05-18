@@ -1,0 +1,39 @@
+{
+  "textureAtlas": {
+    "texture": "C:\\Users\\User\\Downloads\\bbe972f9dd109783405caaca27a4fe69.png",
+    "regionWidth": 48,
+    "regionHeight": 48
+  },
+  "cycles": {
+    "enemy1Right": {
+      "frames": [24,25,26],
+      "isLooping": true,
+      "frameDuration": 0.159999982
+    },
+    "enemy1Left": {
+      "frames": [15,16,17],
+      "isLooping": true,
+      "frameDuration": 0.159999982
+    },
+    "enemy2Left": {
+      "frames": [12,13,14],
+      "isLooping": true,
+      "frameDuration": 0.159999982
+    },
+    "enemy2Right": {
+      "frames": [21,22,23],
+      "isLooping": true,
+      "frameDuration": 0.159999982
+    },
+    "enemy1idle": {
+      "frames": [6,7,8],
+      "isLooping": true,
+      "frameDuration": 0.2
+    },
+    "enemy2idle": {
+      "frames": [3,4,5],
+      "isLooping": true,
+      "frameDuration": 0.2
+    }
+  }
+}

@@ -91,7 +91,9 @@ public class Game1 : Microsoft.Xna.Framework.Game
         
         if (deathMenu.Buttons[0].IsPressed())
             if (_level.IsComplete())
-                LoadLevel($"Levels/level{_level.Id+1}.txt", _level.Id+1);
+                LoadLevel($"Levels/level{_level.Id + 1}.txt", _level.Id + 1);
+            else
+                LoadLevel($"Levels/level{_level.Id}.txt", _level.Id);
         var pressedKeys = Keyboard.GetState().GetPressedKeys();
 
         if (menuCd >= 200 && pressedKeys.Contains(Keys.Escape) && gameState != NotStarted)
@@ -117,7 +119,7 @@ public class Game1 : Microsoft.Xna.Framework.Game
     protected override void Draw(GameTime gameTime)
     {
         GraphicsDevice.Clear(Color.CornflowerBlue);
-        spriteBatch.Begin();
+        spriteBatch.Begin ();
 
         if (gameState == NotStarted)
             mainMenu.Draw(spriteBatch);
@@ -142,8 +144,8 @@ public class Game1 : Microsoft.Xna.Framework.Game
     {
         var levelInString = new StreamReader(path).ReadToEndAsync().Result;
         _level = new Level(levelInString, id);
-        _level.Initialize();
         _level.LoadContent(Content);
+        _level.Initialize();
 
         gameState = Running;
     }

@@ -32,8 +32,7 @@ public class Player : IElement
     private const double ManaRatio = 0.7;
 
     public bool IsAlive = true;
-    public Rectangle Enemy = new Rectangle(100, 1000, 50, 50);
-    
+
     //private int hpScore = 100;
     
     private int direction;
@@ -85,7 +84,6 @@ public class Player : IElement
 
     public void Draw(SpriteBatch spriteBatch)
     {
-        spriteBatch.Draw(texture, Enemy, Color.Gold);
         spriteBatch.Draw(texture, Hitbox, Color.White);
         spriteBatch.DrawString(font,$"mana: {(int)ManaScore}", Position + new Vector2(-15, -30), Color.Black); 
     }

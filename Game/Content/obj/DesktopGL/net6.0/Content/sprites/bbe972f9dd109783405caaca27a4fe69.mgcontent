@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <PipelineBuildEvent xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
-  <SourceFile>E:/My files/c#/Game/Game/Content/Images/fireball.png</SourceFile>
-  <SourceTime>2023-04-08T19:36:35.1378951+05:00</SourceTime>
-  <DestFile>E:/My files/c#/Game/Game/Content/bin/DesktopGL/Images/fireball.xnb</DestFile>
-  <DestTime>2023-05-18T19:11:41.8975239+05:00</DestTime>
+  <SourceFile>E:/My files/c#/Game/Game/Content/sprites/bbe972f9dd109783405caaca27a4fe69.png</SourceFile>
+  <SourceTime>2023-05-18T17:04:51.1728283+05:00</SourceTime>
+  <DestFile>E:/My files/c#/Game/Game/Content/bin/DesktopGL/Content/sprites/bbe972f9dd109783405caaca27a4fe69.xnb</DestFile>
+  <DestTime>2023-05-18T19:12:20.5801946+05:00</DestTime>
   <Importer>TextureImporter</Importer>
   <ImporterTime>2022-07-26T16:44:56+05:00</ImporterTime>
   <Processor>TextureProcessor</Processor>
