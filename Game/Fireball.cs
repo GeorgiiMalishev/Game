@@ -46,7 +46,7 @@ public class Fireball:IElement
     
     public void Draw(SpriteBatch spriteBatch)
     {
-        spriteBatch.Draw(_texture, Hitbox, Color.White);
+        spriteBatch.Draw(_texture, Hitbox, Color.Red);
     }
 
     private void Move(GameTime gameTime)

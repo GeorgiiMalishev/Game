@@ -47,31 +47,31 @@ public class Game1 : Microsoft.Xna.Framework.Game
 
         gameMenu = new Menu(new List<Button>()
         {
-            new(new Rectangle(400, 150, 150, 50), Content.Load<Texture2D>("Images/player"),
+            new(new Rectangle(400, 150, 150, 50), Content.Load<Texture2D>("Images/enemy"),
                 Content.Load<SpriteFont>("Fonts/simplefont"), "Continue", Color.Brown),
-            new(new Rectangle(400, 250, 150, 50), Content.Load<Texture2D>("Images/player"),
+            new(new Rectangle(400, 250, 150, 50), Content.Load<Texture2D>("Images/enemy"),
                 Content.Load<SpriteFont>("Fonts/simplefont"), "Settings", Color.Brown),
-            new(new Rectangle(400, 350, 150, 50), Content.Load<Texture2D>("Images/player"),
+            new(new Rectangle(400, 350, 150, 50), Content.Load<Texture2D>("Images/enemy"),
                 Content.Load<SpriteFont>("Fonts/simplefont"), "Main Menu", Color.Brown)
 
         });
         
         mainMenu = new Menu(new List<Button>()
         {
-            new(new Rectangle(50, 150, 250, 100), Content.Load<Texture2D>("Images/player"),
+            new(new Rectangle(50, 150, 250, 100), Content.Load<Texture2D>("Images/enemy"),
                 Content.Load<SpriteFont>("Fonts/simplefont"), "Start Game", Color.Gold),
-            new(new Rectangle(50, 320, 250, 100), Content.Load<Texture2D>("Images/player"),
+            new(new Rectangle(50, 320, 250, 100), Content.Load<Texture2D>("Images/enemy"),
                 Content.Load<SpriteFont>("Fonts/simplefont"), "Settings", Color.Gold),
-            new(new Rectangle(50, 490, 250, 100), Content.Load<Texture2D>("Images/player"),
+            new(new Rectangle(50, 490, 250, 100), Content.Load<Texture2D>("Images/enemy"),
                 Content.Load<SpriteFont>("Fonts/simplefont"), "Exit", Color.Gold)
 
         });
         
         deathMenu = new Menu(new List<Button>()
         {
-            new(new Rectangle(400, 500, 200, 75), Content.Load<Texture2D>("Images/player"),
+            new(new Rectangle(400, 500, 200, 75), Content.Load<Texture2D>("Images/enemy"),
                 Content.Load<SpriteFont>("Fonts/simplefont"), "Continue", Color.Lime),
-            new(new Rectangle(650, 500, 200, 75), Content.Load<Texture2D>("Images/player"),
+            new(new Rectangle(650, 500, 200, 75), Content.Load<Texture2D>("Images/enemy"),
                 Content.Load<SpriteFont>("Fonts/simplefont"), "Main Menu", Color.Indigo),
 
         });

@@ -18,12 +18,12 @@ public class Plate : IElement
     public Plate(Vector2 position)
     {
         this.position = position;
-        Border = new Rectangle((int)position.X, (int)position.Y, 50, 15);
+        Border = new Rectangle((int)position.X, (int)position.Y, 100, 30);
     }
 
     public static void LoadContent(ContentManager content)
     {
-        texture = content.Load<Texture2D>("Images/player");
+        texture = content.Load<Texture2D>("Images/enemy");
     }
 
     public bool IsStayOnPlate(Rectangle entityBorder)

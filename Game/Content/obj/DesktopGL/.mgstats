@@ -1,5 +1,7 @@
 Source File,Dest File,Processor Type,Content Type,Source File Size,Dest File Size,Build Seconds
-"E:/My files/c#/Game/Game/Content/Fonts/File.spritefont","E:/My files/c#/Game/Game/Content/bin/DesktopGL/Fonts/simplefont.xnb","FontDescriptionProcessor","SpriteFontContent",2068,21535,0,2571152
-"E:/My files/c#/Game/Game/Content/Images/fireball.png","E:/My files/c#/Game/Game/Content/bin/DesktopGL/Images/fireball.xnb","TextureProcessor","Texture2DContent",683,32837,0,0118351
-"E:/My files/c#/Game/Game/Content/Images/player.png","E:/My files/c#/Game/Game/Content/bin/DesktopGL/Images/player.xnb","TextureProcessor","Texture2DContent",724,26917,0,0017234
-"E:/My files/c#/Game/Game/Content/sprites/bbe972f9dd109783405caaca27a4fe69.png","E:/My files/c#/Game/Game/Content/bin/DesktopGL/sprites/bbe972f9dd109783405caaca27a4fe69.xnb","TextureProcessor","Texture2DContent",9830,331861,0,0144433
+"E:/My files/c#/Game/Game/Content/Fonts/File.spritefont","E:/My files/c#/Game/Game/Content/bin/DesktopGL/Fonts/simplefont.xnb","FontDescriptionProcessor","SpriteFontContent",2068,21535,0,2701689
+"E:/My files/c#/Game/Game/Content/Images/enemy.png","E:/My files/c#/Game/Game/Content/bin/DesktopGL/Images/enemy.xnb","TextureProcessor","Texture2DContent",1977,921685,0,0534396
+"E:/My files/c#/Game/Game/Content/Images/fireball.png","E:/My files/c#/Game/Game/Content/bin/DesktopGL/Images/fireball.xnb","TextureProcessor","Texture2DContent",17719,921685,0,0430999
+"E:/My files/c#/Game/Game/Content/Images/plate.png","E:/My files/c#/Game/Game/Content/bin/DesktopGL/Images/plate.xnb","TextureProcessor","Texture2DContent",1985,921685,0,0283058
+"E:/My files/c#/Game/Game/Content/Images/player.png","E:/My files/c#/Game/Game/Content/bin/DesktopGL/Images/player.xnb","TextureProcessor","Texture2DContent",16525,921685,0,0438854
+"E:/My files/c#/Game/Game/Content/sprites/bbe972f9dd109783405caaca27a4fe69.png","E:/My files/c#/Game/Game/Content/bin/DesktopGL/sprites/bbe972f9dd109783405caaca27a4fe69.xnb","TextureProcessor","Texture2DContent",9830,331861,0,0395281

@@ -87,7 +87,7 @@ public class Level
     {
         if (Fireball.CooldownCounter != 0 || Player.ManaScore - Fireball.ManaCost < double.Epsilon) 
             return;
-        PlayerAttack.Add(new Fireball(Player.Position, Player.LastDirection));
+        PlayerAttack.Add(new Fireball(Player.Position + new Vector2(15, 15), Player.LastDirection));
         Fireball.CooldownCounter  = Fireball.Cooldown;
         Player.ManaScore -= Fireball.ManaCost;
     }

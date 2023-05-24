@@ -15,7 +15,7 @@ public class Player : IElement
     private static Texture2D texture;
     public Vector2 Position;
     private Vector2 velocity = new (4, 0);
-    private Rectangle Hitbox => new ((int)Position.X - 15, (int)Position.Y - 15, 30, 30);
+    private Rectangle Hitbox => new ((int)Position.X - 15, (int)Position.Y - 15, 60, 60);
 
     private float fallTime;
     private bool isOnGround;
@@ -84,8 +84,8 @@ public class Player : IElement
 
     public void Draw(SpriteBatch spriteBatch)
     {
-        spriteBatch.Draw(texture, Hitbox, Color.White);
-        spriteBatch.DrawString(font,$"mana: {(int)ManaScore}", Position + new Vector2(-15, -30), Color.Black); 
+        spriteBatch.Draw(texture, Hitbox, Color.Blue);
+        spriteBatch.DrawString(font,$"mana: {(int)ManaScore}", Position + new Vector2(-15, -30), Color.Cyan); 
     }
 
     private void DoFall(GameTime gameTime, Level level)
