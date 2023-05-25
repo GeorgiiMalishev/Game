@@ -23,9 +23,9 @@ public class Player : IElement
     private bool isJumping;
     private bool wasJumping;
     private float jumpTime;
-    private const float MaxJumpTime = 0.35f;
+    private const float MaxJumpTime = 0.5f;
     private const float JumpLaunchVelocity = -35.0f;
-    private const float JumpControlPower = 0.14f;
+    private const float JumpControlPower = 0.2f;
 
     public double ManaScore = 100;
     private const int MaxMana = 100;

@@ -18,7 +18,7 @@ public class Enemy : IElement
     public Rectangle Hitbox => new((int)position.X - 15, (int)position.Y - 15, 60, 60);
     private int hp = 100;
     private static SpriteFont font;
-    private bool isRightDirection = true;
+    private bool isRightDirection = false;
     private bool isDamaged;
     private Color defaultColor = Color.Coral;
     private Color damagedColor = Color.Brown;
@@ -80,7 +80,7 @@ public class Enemy : IElement
             newXPosition = position.X + velocity.X;
         else
             newXPosition = position.X - velocity.X;
-        if (plates.Any(p => p.IsStayOnPlate(new Rectangle((int)newXPosition - 15, (int)position.Y - 15, 30, 30))))
+        if (plates.Any(p => p.IsStayOnPlate(new Rectangle((int)newXPosition - 15, (int)position.Y - 15, 60, 60))))
             position.X = newXPosition;
         else
             isRightDirection = !isRightDirection;

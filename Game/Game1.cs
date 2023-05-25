@@ -50,8 +50,6 @@ public class Game1 : Microsoft.Xna.Framework.Game
             new(new Rectangle(400, 150, 150, 50), Content.Load<Texture2D>("Images/enemy"),
                 Content.Load<SpriteFont>("Fonts/simplefont"), "Continue", Color.Brown),
             new(new Rectangle(400, 250, 150, 50), Content.Load<Texture2D>("Images/enemy"),
-                Content.Load<SpriteFont>("Fonts/simplefont"), "Settings", Color.Brown),
-            new(new Rectangle(400, 350, 150, 50), Content.Load<Texture2D>("Images/enemy"),
                 Content.Load<SpriteFont>("Fonts/simplefont"), "Main Menu", Color.Brown)
 
         });
@@ -61,8 +59,6 @@ public class Game1 : Microsoft.Xna.Framework.Game
             new(new Rectangle(50, 150, 250, 100), Content.Load<Texture2D>("Images/enemy"),
                 Content.Load<SpriteFont>("Fonts/simplefont"), "Start Game", Color.Gold),
             new(new Rectangle(50, 320, 250, 100), Content.Load<Texture2D>("Images/enemy"),
-                Content.Load<SpriteFont>("Fonts/simplefont"), "Settings", Color.Gold),
-            new(new Rectangle(50, 490, 250, 100), Content.Load<Texture2D>("Images/enemy"),
                 Content.Load<SpriteFont>("Fonts/simplefont"), "Exit", Color.Gold)
 
         });
@@ -84,7 +80,7 @@ public class Game1 : Microsoft.Xna.Framework.Game
             LoadLevel("Levels/level1.txt", 1);
         }
 
-        else if(mainMenu.Buttons[2].IsPressed())
+        else if(mainMenu.Buttons[1].IsPressed())
         {
             Exit();
         }
@@ -106,7 +102,7 @@ public class Game1 : Microsoft.Xna.Framework.Game
         
         if (gameMenu.Buttons[0].IsPressed())
             gameState = Running;
-        else if (gameMenu.Buttons[2].IsPressed() || deathMenu.Buttons[1].IsPressed())
+        else if (gameMenu.Buttons[1].IsPressed() || deathMenu.Buttons[1].IsPressed())
             gameState = NotStarted;
         if (gameState == Running)
             _level.Update(gameTime, pressedKeys);
