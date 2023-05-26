@@ -97,3 +97,5 @@ C:\Projects\Game\Game\bin\Debug\net6.0\Content\Fonts\simplefont.xnb
 E:\My files\c#\Game\Game\bin\Debug\net6.0\Content\sprites\bbe972f9dd109783405caaca27a4fe69.xnb
 E:\My files\c#\Game\Game\bin\Debug\net6.0\Content\Images\enemy.xnb
 E:\My files\c#\Game\Game\bin\Debug\net6.0\Content\Images\plate.xnb
+E:\My files\c#\Game\Game\bin\Debug\net6.0\Content\Fonts\menu.xnb
+E:\My files\c#\Game\Game\bin\Debug\net6.0\Content\Images\gem.xnb

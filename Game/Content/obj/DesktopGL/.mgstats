@@ -1,8 +1,9 @@
 Source File,Dest File,Processor Type,Content Type,Source File Size,Dest File Size,Build Seconds
-"E:/My files/c#/Game/Game/Content/Fonts/File.spritefont","E:/My files/c#/Game/Game/Content/bin/DesktopGL/Fonts/simplefont.xnb","FontDescriptionProcessor","SpriteFontContent",2068,21535,0,2703218
-"E:/My files/c#/Game/Game/Content/Images/enemy.png","E:/My files/c#/Game/Game/Content/bin/DesktopGL/Images/enemy.xnb","TextureProcessor","Texture2DContent",1977,921685,0,0545289
-"E:/My files/c#/Game/Game/Content/Images/fireball.png","E:/My files/c#/Game/Game/Content/bin/DesktopGL/Images/fireball.xnb","TextureProcessor","Texture2DContent",17719,921685,0,042299
-"E:/My files/c#/Game/Game/Content/Images/gem.png","E:/My files/c#/Game/Game/Content/bin/DesktopGL/Images/gem.xnb","TextureProcessor","Texture2DContent",16020,921685,0,0342476
-"E:/My files/c#/Game/Game/Content/Images/plate.png","E:/My files/c#/Game/Game/Content/bin/DesktopGL/Images/plate.xnb","TextureProcessor","Texture2DContent",1985,921685,0,0303608
-"E:/My files/c#/Game/Game/Content/Images/player.png","E:/My files/c#/Game/Game/Content/bin/DesktopGL/Images/player.xnb","TextureProcessor","Texture2DContent",16525,921685,0,028345
-"E:/My files/c#/Game/Game/Content/sprites/bbe972f9dd109783405caaca27a4fe69.png","E:/My files/c#/Game/Game/Content/bin/DesktopGL/sprites/bbe972f9dd109783405caaca27a4fe69.xnb","TextureProcessor","Texture2DContent",9830,331861,0,0178955
+"E:/My files/c#/Game/Game/Content/Fonts/File.spritefont","E:/My files/c#/Game/Game/Content/bin/DesktopGL/Fonts/simplefont.xnb","FontDescriptionProcessor","SpriteFontContent",2068,21535,0,2529161
+"E:/My files/c#/Game/Game/Content/Fonts/menu.spritefont","E:/My files/c#/Game/Game/Content/bin/DesktopGL/Fonts/menu.xnb","FontDescriptionProcessor","SpriteFontContent",2068,21535,0,0150854
+"E:/My files/c#/Game/Game/Content/Images/enemy.png","E:/My files/c#/Game/Game/Content/bin/DesktopGL/Images/enemy.xnb","TextureProcessor","Texture2DContent",1977,921685,0,0384127
+"E:/My files/c#/Game/Game/Content/Images/fireball.png","E:/My files/c#/Game/Game/Content/bin/DesktopGL/Images/fireball.xnb","TextureProcessor","Texture2DContent",17719,921685,0,0262511
+"E:/My files/c#/Game/Game/Content/Images/gem.png","E:/My files/c#/Game/Game/Content/bin/DesktopGL/Images/gem.xnb","TextureProcessor","Texture2DContent",16020,921685,0,0284188
+"E:/My files/c#/Game/Game/Content/Images/plate.png","E:/My files/c#/Game/Game/Content/bin/DesktopGL/Images/plate.xnb","TextureProcessor","Texture2DContent",1985,921685,0,0277678
+"E:/My files/c#/Game/Game/Content/Images/player.png","E:/My files/c#/Game/Game/Content/bin/DesktopGL/Images/player.xnb","TextureProcessor","Texture2DContent",16525,921685,0,027604
+"E:/My files/c#/Game/Game/Content/sprites/bbe972f9dd109783405caaca27a4fe69.png","E:/My files/c#/Game/Game/Content/bin/DesktopGL/sprites/bbe972f9dd109783405caaca27a4fe69.xnb","TextureProcessor","Texture2DContent",9830,331861,0,0098205

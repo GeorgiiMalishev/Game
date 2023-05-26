@@ -20,6 +20,13 @@
 /processorParam:TextureFormat=Compressed
 /build:Fonts/File.spritefont;Fonts/simplefont.spritefont
 
+#begin Fonts/menu.spritefont
+/importer:FontDescriptionImporter
+/processor:FontDescriptionProcessor
+/processorParam:PremultiplyAlpha=True
+/processorParam:TextureFormat=Compressed
+/build:Fonts/menu.spritefont
+
 #begin Images/enemy.png
 /importer:TextureImporter
 /processor:TextureProcessor

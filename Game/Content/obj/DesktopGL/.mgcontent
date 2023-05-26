@@ -5,6 +5,7 @@
   <Config />
   <SourceFiles>
     <File>E:/My files/c#/Game/Game/Content/Fonts/File.spritefont</File>
+    <File>E:/My files/c#/Game/Game/Content/Fonts/menu.spritefont</File>
     <File>E:/My files/c#/Game/Game/Content/Images/enemy.png</File>
     <File>E:/My files/c#/Game/Game/Content/Images/fireball.png</File>
     <File>E:/My files/c#/Game/Game/Content/Images/gem.png</File>
@@ -14,6 +15,7 @@
   </SourceFiles>
   <DestFiles>
     <File>Fonts/simplefont.spritefont</File>
+    <File xsi:nil="true" />
     <File xsi:nil="true" />
     <File xsi:nil="true" />
     <File xsi:nil="true" />
