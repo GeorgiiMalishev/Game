@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Numerics;
 using Microsoft.Xna.Framework;
@@ -18,6 +19,7 @@ public class Level
     public List<Plate> Plates = new ();
     public List<Enemy> Enemies = new();
     public List<Fireball> PlayerAttack = new();
+    public List<Fireball> EnemyAttack = new();
     public Player Player;
 
     public Level(string levelInString, int id)
@@ -67,9 +69,21 @@ public class Level
         
         PlayerAttack.ForEach(f => f.Update(gameTime));
         PlayerAttack = PlayerAttack.Where(f => f.IsExist).ToList();
-        
-        Enemies.ForEach(e => e.Update(gameTime, this));
+
+        Enemies.ForEach(e =>
+        {
+            e.Update(gameTime, this);
+            CreateEnemyFireball(e);
+        }); 
+        EnemyAttack.ForEach(f =>
+        {
+            f.Update(gameTime);
+            if (!f.Hitbox.Intersects(Player.Hitbox)) return;
+            Player.Hp -= f.Damage;
+            f.IsExist = false;
+        });
         Enemies = Enemies.Where(e => e.IsExist()).ToList();
+        EnemyAttack = EnemyAttack.Where(f => f.IsExist).ToList();
         
         elements.ForEach(element => element.Update(gameTime));
         elements = elements.Where(element => element.IsExist()).ToList();
@@ -77,6 +91,7 @@ public class Level
 
     public void Draw(SpriteBatch spriteBatch)
     {
+        EnemyAttack.ForEach(f => f.Draw(spriteBatch));
         Enemies.ForEach(e => e.Draw(spriteBatch));
         elements.ForEach(element => element.Draw(spriteBatch));
         PlayerAttack.ForEach(f => f.Draw(spriteBatch));
@@ -85,11 +100,48 @@ public class Level
 
     public void CreateFireball()
     {
-        if (Fireball.CooldownCounter != 0 || Player.ManaScore - Fireball.ManaCost < double.Epsilon) 
+        if (Player.ManaScore - Fireball.ManaCost < double.Epsilon) 
             return;
         PlayerAttack.Add(new Fireball(Player.Position + new Vector2(15, 15), Player.LastDirection));
         Fireball.CooldownCounter  = Fireball.Cooldown;
         Player.ManaScore -= Fireball.ManaCost;
+    }
+    
+    public void CreateEnemyFireball(Enemy enemy)
+    {
+        if (enemy.CooldownCounter > 0) 
+            return;
+        EnemyAttack.Add(MakeTargetedFireball(enemy, Player));
+        enemy.CooldownCounter  = enemy.Cooldown;
+    }
+
+    private Fireball MakeTargetedFireball(Enemy start, Player target)
+    {
+        var y1 = start.Position.Y;  
+        var y2 = target.Position.Y;    
+        var x1 = start.Position.X;  
+        var x2 = target.Position.X;
+        var direction = x1 > x2 ? -1 : 1;
+        
+        float xRatio;
+        float yRatio; 
+        if (Math.Abs(x1 - x2) < Double.Epsilon)
+        {
+            yRatio = 1;
+            xRatio = 0;
+        }
+        else
+        {
+            yRatio = (y2 - y1) / (x1 - x2) * direction * -1;
+            xRatio = 1;
+        }
+
+        return new Fireball(start.Position + new Vector2(15, 15), direction)
+        {
+            Color = Color.Orange,
+            YRatio = yRatio,
+            XRatio = xRatio
+        };
     }
 
     public bool IsComplete()

@@ -15,7 +15,7 @@ public class Player : IElement
     private static Texture2D texture;
     public Vector2 Position;
     private Vector2 velocity = new (4, 0);
-    private Rectangle Hitbox => new ((int)Position.X - 15, (int)Position.Y - 15, 60, 60);
+    public Rectangle Hitbox => new ((int)Position.X - 15, (int)Position.Y - 15, 60, 60);
 
     private float fallTime;
     private bool isOnGround;
@@ -30,6 +30,9 @@ public class Player : IElement
     public double ManaScore = 100;
     private const int MaxMana = 100;
     private const double ManaRatio = 0.7;
+
+    public double Hp = 100;
+    private double hpRatio = 0.1;
 
     public bool IsAlive = true;
 
@@ -79,13 +82,17 @@ public class Player : IElement
             ? ManaScore 
             : ManaScore + ManaRatio;
 
-        IsAlive = !level.Enemies.Any(e => e.Hitbox.Intersects(Hitbox));
+        IsAlive = !level.Enemies.Any(e => e.Hitbox.Intersects(Hitbox)) && Hp > 0;
+
+        if (Hp < 100)
+            Hp += hpRatio;
     }
 
     public void Draw(SpriteBatch spriteBatch)
     {
         spriteBatch.Draw(texture, Hitbox, Color.Blue);
-        spriteBatch.DrawString(font,$"mana: {(int)ManaScore}", Position + new Vector2(-15, -30), Color.Cyan); 
+        spriteBatch.DrawString(font,$"Mana: {(int)ManaScore}", Position + new Vector2(-15, -30), Color.Cyan); 
+        spriteBatch.DrawString(font,$"Hp: {(int)Hp}", Position + new Vector2(-15, -45), Color.Red); 
     }
 
     private void DoFall(GameTime gameTime, Level level)
