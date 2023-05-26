@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Content;
@@ -12,10 +13,10 @@ namespace Game;
 public class Enemy : IElement
 {
     private static Texture2D texture;
-    private Vector2 position;
+    public Vector2 Position;
     private static SpriteSheet _spriteSheet;
     private string _animation;
-    public Rectangle Hitbox => new((int)position.X - 15, (int)position.Y - 15, 60, 60);
+    public Rectangle Hitbox => new((int)Position.X - 15, (int)Position.Y - 15, 60, 60);
     private int hp = 100;
     private static SpriteFont font;
     private bool isRightDirection = false;
@@ -24,12 +25,14 @@ public class Enemy : IElement
     private Color damagedColor = Color.Brown;
     private Color currentColor;
     private int colorCd = 30;
-    private Vector2 velocity = new Vector2(5, 0);
+    private Vector2 velocity = new Vector2(3, 0);
     private int fallTime;
 
+    public float CooldownCounter = new Random().Next(2000);
+    public readonly float Cooldown = 2000;
     public Enemy(Vector2 position)
     {
-        this.position = position;
+        Position = position;
     }
 
     public static void LoadContent(ContentManager content)
@@ -59,7 +62,8 @@ public class Enemy : IElement
 
         colorCd = colorCd - 1 >= 0 ? colorCd - 1 : colorCd;
 
-        var id = hp < 50 ? 2 : 1;
+        if (CooldownCounter >= 0)
+            CooldownCounter -= gameTime.ElapsedGameTime.Milliseconds;
     }
 
     public void Draw(SpriteBatch spriteBatch)
@@ -77,11 +81,11 @@ public class Enemy : IElement
     {
         float newXPosition;
         if (isRightDirection)
-            newXPosition = position.X + velocity.X;
+            newXPosition = Position.X + velocity.X;
         else
-            newXPosition = position.X - velocity.X;
-        if (plates.Any(p => p.IsStayOnPlate(new Rectangle((int)newXPosition - 15, (int)position.Y - 15, 60, 60))))
-            position.X = newXPosition;
+            newXPosition = Position.X - velocity.X;
+        if (plates.Any(p => p.IsStayOnPlate(new Rectangle((int)newXPosition - 15, (int)Position.Y - 15, 60, 60))))
+            Position.X = newXPosition;
         else
             isRightDirection = !isRightDirection;
         
@@ -97,7 +101,7 @@ public class Enemy : IElement
             fallTime += gameTime.ElapsedGameTime.Milliseconds;
         }
 
-        position.Y += velocity.Y;
+        Position.Y += velocity.Y;
     }
     
    

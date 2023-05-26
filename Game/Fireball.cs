@@ -13,11 +13,15 @@ public class Fireball:IElement
     public const int ManaCost = 70;
     public static int CooldownCounter;
     public const int Cooldown = 200;
+    public Color Color = Color.Red;
     
     private Vector2 position;
     private const float Velocity = 0.03f;
     private readonly int direction;
     private float flyTime;
+
+    public float XRatio = 1;
+    public float YRatio = 0;
 
     public bool IsExist = true;
 
@@ -41,17 +45,20 @@ public class Fireball:IElement
             ? CooldownCounter - gameTime.ElapsedGameTime.Milliseconds 
             : 0;
 
-        IsExist = position.X is <= 1920 and >= 0 && IsExist;
+        IsExist = position.X is <= 1920 and >= 0 
+                  && position.Y is <= 1100 and >= 0
+                  && IsExist;
     }
     
     public void Draw(SpriteBatch spriteBatch)
     {
-        spriteBatch.Draw(_texture, Hitbox, Color.Red);
+        spriteBatch.Draw(_texture, Hitbox, Color);
     }
 
     private void Move(GameTime gameTime)
     {
         flyTime += gameTime.ElapsedGameTime.Milliseconds;
-        position.X += direction * Velocity * flyTime;
+        position.X += direction * Velocity * flyTime * XRatio;
+        position.Y += Velocity * flyTime * YRatio;
     }
 }
